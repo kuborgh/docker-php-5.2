@@ -5,10 +5,10 @@ RUN apt-get update &&\
     RUNLEVEL=1 apt-get -y install\
         apache2 \
         apache2-mpm-prefork \
-        sendmail \
     &&\
     a2enmod rewrite &&\
     rm /etc/apache2/sites-enabled/000-default
+COPY 000-project.conf /etc/apache2/sites-enabled/
 
 # Download an build PHP 5.2.17
 # See https://askubuntu.com/questions/597462/how-to-install-php-5-2-x-on-ubuntu-14-04
@@ -294,9 +294,12 @@ RUN mkdir /php;\
     && \
     apt-get clean
 
-COPY 000-project.conf /etc/apache2/sites-enabled/
 COPY php.ini /etc/php/apache2-php5.2/
 COPY php.ini /etc/php/cli-php5.2/
+
+# Add sendmail support. This may not the best option, as the container runs two services at once
+RUN RUNLEVEL=1 apt-get -y install sendmail  &&\
+    /etc/init.d/sendmail start
 
 EXPOSE 80
 
