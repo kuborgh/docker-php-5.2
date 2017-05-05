@@ -5,6 +5,7 @@ RUN apt-get update &&\
     RUNLEVEL=1 apt-get -y install\
         apache2 \
         apache2-mpm-prefork \
+        sendmail \
     &&\
     a2enmod rewrite &&\
     rm /etc/apache2/sites-enabled/000-default
