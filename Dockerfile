@@ -2,11 +2,12 @@ FROM ubuntu:12.04
 
 # Install apache
 RUN apt-get update &&\
-    RUNLEVEL=1 apt-get -y install\
+    RUNLEVEL=1 apt-get install -y --no-install-recommends \
         apache2 \
         apache2-mpm-prefork \
-    &&\
-    a2enmod rewrite &&\
+    && \
+    rm -rf /var/lib/apt/lists/* && \
+    a2enmod rewrite && \
     rm /etc/apache2/sites-enabled/000-default
 COPY 000-project.conf /etc/apache2/sites-enabled/
 
@@ -14,7 +15,7 @@ COPY 000-project.conf /etc/apache2/sites-enabled/
 # See https://askubuntu.com/questions/597462/how-to-install-php-5-2-x-on-ubuntu-14-04
 RUN mkdir /php;\
     cd /php; \
-    apt-get -y --no-install-recommends install \
+    apt-get install -y --no-install-recommends \
         wget \
         tar \
         bzip2 \
@@ -266,7 +267,7 @@ RUN mkdir /php;\
 
     # Clean up
     rm -Rf /php && \
-    apt-get -y remove \
+    apt-get remove -y \
         wget \
         bzip2 \
         gcc \
@@ -292,7 +293,8 @@ RUN mkdir /php;\
         autoconf \
         libmagic-dev \
     && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY php.ini /etc/php/apache2-php5.2/
 COPY php.ini /etc/php/cli-php5.2/
