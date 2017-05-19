@@ -299,6 +299,12 @@ RUN mkdir /php;\
 COPY php.ini /etc/php/apache2-php5.2/
 COPY php.ini /etc/php/cli-php5.2/
 
+# Enable mailing via ssmtp
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ssmtp && \
+	apt-get clean && \
+	rm -r /var/lib/apt/lists/*
+
 # Add sendmail support. This may not the best option, as the container runs two services at once
 RUN RUNLEVEL=1 apt-get -y install sendmail  &&\
     /etc/init.d/sendmail start
