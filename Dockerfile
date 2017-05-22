@@ -13,7 +13,8 @@ RUN apt-get update && \
         perl-modules \
     && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
+    rm -Rf /var/lib/apt/lists/* && \
+    rm -Rf /var/cache/* && \
     a2enmod rewrite && \
     rm /etc/apache2/sites-enabled/000-default
 COPY 000-project.conf /etc/apache2/sites-enabled/
@@ -274,7 +275,9 @@ RUN mkdir /php && \
 
     # Clean up
     rm -Rf /php && \
-    apt-get remove -y \
+    rm -Rf /var/cache/* && \
+    rm -Rf /tmp/pear && \
+    apt-get purge -y \
         apache2-prefork-dev autoconf binutils build-essential bzip2 \
         comerr-dev cpp cpp-4.6 dpkg-dev g++ g++-4.6 gcc gcc-4.6 krb5-multidev \
         libapr1-dev libaprutil1-dev libaspell-dev libbz2-dev \
