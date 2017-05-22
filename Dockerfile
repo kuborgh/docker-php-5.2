@@ -289,7 +289,7 @@ RUN mkdir /php && \
         libjpeg-dev libjpeg-turbo8-dev libjpeg8-dev \
         libkadm5clnt-mit8 libkadm5srv-mit8 libkdb5-6 \
         libkrb5-dev libldap2-dev libltdl-dev libltdl7 \
-        libmagic-dev libmagic1 libmcrypt-dev libmhash-dev \
+        libmagic-dev libmcrypt-dev libmhash-dev \
         libmpc2 libmpfr4 libmysqlclient-dev libncurses5-dev \
         libp11-kit-dev libpam0g-dev libpcre3-dev libpcrecpp0 libpng12-dev libpopt0 \
         libpq-dev libpq5 libpspell-dev libpthread-stubs0 libpthread-stubs0-dev \
