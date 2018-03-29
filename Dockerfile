@@ -158,6 +158,7 @@ RUN mkdir /php && \
         --disable-embed \
         --with-apxs2=/usr/bin/apxs2 \
         --with-pic \
+        --enable-pcntl \
     && \
     make && \
     make install && \
@@ -259,6 +260,7 @@ RUN mkdir /php && \
         --disable-cgi \
         --disable-embed \
         --with-pic \
+        --enable-pcntl \
     && \
     make clean && \
     make && \
