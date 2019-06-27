@@ -18,7 +18,7 @@ RUN apt-get update && \
     a2enmod rewrite && \
     rm /etc/apache2/sites-enabled/000-default
 COPY 000-project.conf /etc/apache2/sites-enabled/
-
+RUN mkdir /project
 # Download an build PHP 5.2.17
 # See https://askubuntu.com/questions/597462/how-to-install-php-5-2-x-on-ubuntu-14-04
 RUN mkdir /php && \
